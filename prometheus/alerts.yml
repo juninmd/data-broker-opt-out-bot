@@ -1,0 +1,11 @@
+groups:
+  - name: broker_alerts
+    rules:
+      - alert: BrokerSuccessRatioLow
+        expr: broker_success_ratio < 0.5
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Broker success ratio is below 0.5"
+          description: "The data broker opt-out success ratio has dropped below 0.5 (current value: {{ $value }})."
