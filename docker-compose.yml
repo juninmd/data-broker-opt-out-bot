@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - data-store:/app/data
+    environment:
+      - DATABASE_PATH=/app/data/app.db
+    restart: unless-stopped
+
+  bot:
+    build: .
+    command: python -m src.db.database
+    volumes:
+      - data-store:/app/data
+    environment:
+      - DATABASE_PATH=/app/data/app.db
+    restart: unless-stopped
+
+volumes:
+  data-store:

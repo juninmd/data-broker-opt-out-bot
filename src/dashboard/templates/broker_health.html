@@ -1,0 +1,22 @@
+{% if health_records %}
+<table>
+    <thead>
+        <tr>
+            <th>Broker</th>
+            <th>Status</th>
+            <th>Latency</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in health_records %}
+        <tr>
+            <td><strong>{{ item.broker_name }}</strong></td>
+            <td><span class="status-badge status-{{ item.status }}">{{ item.status }}</span></td>
+            <td>{{ item.response_time_ms }} ms</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color: var(--muted-text);">No broker health data available.</p>
+{% endif %}

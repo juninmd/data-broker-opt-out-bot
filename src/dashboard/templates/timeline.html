@@ -1,0 +1,26 @@
+{% if requests %}
+<table>
+    <thead>
+        <tr>
+            <th>Broker</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Details</th>
+            <th>Updated</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in requests %}
+        <tr>
+            <td><strong>{{ req.broker_name }}</strong></td>
+            <td>{{ req.request_type }}</td>
+            <td><span class="status-badge status-{{ req.status }}">{{ req.status }}</span></td>
+            <td>{{ req.details or '-' }}</td>
+            <td>{{ req.updated_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color: var(--muted-text);">No opt-out requests found.</p>
+{% endif %}
