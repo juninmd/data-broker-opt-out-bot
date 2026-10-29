@@ -1,0 +1,19 @@
+{
+    # Global options
+    email {$ACME_EMAIL:admin@example.com}
+}
+
+# Webhooks / Bot service proxy
+{$DOMAIN_NAME:localhost} {
+    encode gzip zstd
+
+    # Healthcheck endpoint
+    handle /health {
+        reverse_proxy bot:8000
+    }
+
+    # Proxy request to bot
+    handle {
+        reverse_proxy bot:8000
+    }
+}
