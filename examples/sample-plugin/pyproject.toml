@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "optout-broker-xyz"
+version = "0.1.0"
+description = "Community adapter plugin for XYZ Data Broker"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "data-broker-opt-out-bot",
+]
+
+[project.entry-points."optout_bot.adapters"]
+xyz_broker = "optout_broker_xyz.adapter:XYZBrokerAdapter"
+
+[tool.setuptools.packages.find]
+where = ["."]
